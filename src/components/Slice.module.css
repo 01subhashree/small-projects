@@ -1,0 +1,14 @@
+.Box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    border: 1px solid;
+    height: 50vh;
+    width: 70vw;
+    padding: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 2px 2px 4px 2px #888; 
+}
