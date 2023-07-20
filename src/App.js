@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Article from "./components/Article";
+import ARTICLES from "./components/ArticleData";
 
-function App() {
+export default function App() {
+  const sortedByUpvotes = ARTICLES.sort((a, b) => b.upvotes - a.upvotes);
+
+  const [sortArticles, setSortArticles] = useState(sortedByUpvotes);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div
+        style={{
+          padding: "2rem",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <h1>Sort Article</h1>
+        <div className="d-flex justify-content-center gap-4">
+          <button
+            onClick={() =>
+              setSortArticles(
+                ARTICLES.slice().sort((a, b) => b.upvotes - a.upvotes)
+              )
+            }
+          >
+            Most Upvoted
+          </button>
+          <button
+            onClick={() =>
+              setSortArticles(
+                ARTICLES.slice().sort(
+                  (a, b) => new Date(b.date) - new Date(a.date)
+                )
+              )
+            }
+          >
+            Most Recent
+          </button>
+        </div>
+      </div>
+      <Article article={sortArticles} />
     </div>
   );
 }
-
-export default App;
